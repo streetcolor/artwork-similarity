@@ -1,8 +1,8 @@
-cloudpickle==2.2.1
-Pillow==9.4.0
-protobuf==3.20.3
-qdrant_client==1.1.6
-sentence_transformers==2.2.2
-streamlit==1.21.0
-toml==0.10.2
-tqdm==4.65.0
+cloudpickle
+Pillow
+protobuf
+qdrant_client
+sentence_transformers
+streamlit
+toml
+tqdm
