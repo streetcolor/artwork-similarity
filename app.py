@@ -1,7 +1,7 @@
 import streamlit as st
 import io
 from qdrant.vector_searcher import VectorSearch
-from config import QDRANT_URL, QDRANT_KEY, EMBEDDER, COLLECTION_NAME, IMAGES_DIR
+from config import QDRANT_URL, QDRANT_KEY, EMBEDDER, COLLECTION_NAME
 from PIL import Image
 import requests
 st.set_page_config(
