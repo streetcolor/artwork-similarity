@@ -45,12 +45,13 @@ if image_bytes:
 
         st.title("Image search result")
         for id, r in enumerate(search_result):
-            id_artwork = r['image_name'].split('_')[-1].split('.')[0]
-            st.subheader(f"{r['artist']} ")
+            st.subheader(f"{r['artist_name']} ")
+            st.text(f"{r['price']} €")
+            st.text(f"{r['description']} ")
             st.markdown(
-                f"[Buy this artwork on Artsper](https://www.artsper.com/fr/oeuvres-d-art-contemporain/peinture/{id_artwork}/tropical-elegance-03)")
+                f"[Buy this artwork on Artsper](https://www.artsper.com/fr/oeuvres-d-art-contemporain/peinture/{id}/tropical-elegance-03)")
 
-            url = "https://media.artsper.com/artwork/{id}_1_m.jpg".format(id=id_artwork)
+            url = "https://media.artsper.com/artwork/{image_name}".format(image_name=r['image_name'])
 
             image = Image.open(requests.get(url, stream=True).raw).resize((400, 400), Image.LANCZOS)
             st.image(image)

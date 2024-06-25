@@ -1,4 +1,4 @@
-from qdrant_client import QdrantClient
+from qdrant_client import QdrantClient, models
 from sentence_transformers import SentenceTransformer
 
 class VectorSearch:
@@ -31,13 +31,20 @@ class VectorSearch:
         :param k: The number of hits to return from the search.
         :return: A list of hit payloads containing information about the images associated with the hits.
         """
-
-        print(self.encoder.encode(query).tolist())
-        print("-----------------------------------")
-
         hits = self.qdrant_client.search(
             collection_name=self.collection_name,
             query_vector=self.encoder.encode(query).tolist(),
+            score_threshold=0.75,
+            #query_filter=models.Filter(
+            #    must=[
+            #        models.FieldCondition(
+            #            key="artist",
+            #            match=models.MatchValue(
+            #                value="Nataliya Bagatskaya",
+            #            ),
+            #        )
+            #    ]
+            #),
             limit=k
         )  # search the Qdrant collection using the encoded query vector and return the top k hits
         for hit in hits:
