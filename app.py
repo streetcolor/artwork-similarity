@@ -41,10 +41,11 @@ if number:
     buf = io.BytesIO()
     image.save(buf, format='JPEG')
     image_bytes = buf.getvalue()
+    st.image(image_bytes)
 
 if image_bytes:
 
-    k = st.slider(label='Choose how many similar images to get',min_value=1, max_value=10, step=1, value=3)
+    k = st.slider(label='Choose how many similar images to get',min_value=1, max_value=30, step=1, value=10)
 
     if st.button('Search'):
 
@@ -57,6 +58,8 @@ if image_bytes:
                     Image.open(io.BytesIO(image_bytes)), k)
 
         st.title("Image search result")
+
+
         for id, r in enumerate(search_result):
             st.subheader(f"{r['artist_name']} ")
             st.text(f"{r['price']} €")
