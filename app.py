@@ -36,7 +36,7 @@ if uploaded_file:
     st.image(image_bytes, width=400)
 
 if number: 
-    idInt = int(id)
+    idInt = int(number)
     image = Image.open(requests.get("https://media.artsper.com/artwork/{id}_1_m.jpg".format(id=idInt), stream=True).raw)
     buf = io.BytesIO()
     image.save(buf, format='JPEG')
