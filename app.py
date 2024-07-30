@@ -24,10 +24,22 @@ image_bytes = None
 st.markdown('### Search for artworks similar to the uploaded image.')
 uploaded_file = st.file_uploader("Upload image", type=[
     "png", "jpeg", "jpg"], accept_multiple_files=False, key=None, help="upload image")
+
+
+number = st.number_input("Insert a number")
+st.write("The current number is ", number)
+
+
 if uploaded_file:
     # To read file as bytes
     image_bytes = uploaded_file.getvalue()
     st.image(image_bytes, width=400)
+
+if number: 
+    image = Image.open(requests.get("https://media.artsper.com/artwork/{id}_1_m.jpg".format(id=id), stream=True).raw)
+    buf = io.BytesIO()
+    image.save(buf, format='JPEG')
+    image_bytes = buf.getvalue()
 
 if image_bytes:
 
